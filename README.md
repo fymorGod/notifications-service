@@ -1,18 +1,40 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="150" alt="Nest Logo" /></a>
 </p>
 
 ## Microservices - NodeJs Arquitetura Service-Oriented
 
 - Tecnologias Utilizadas
-    - Nest.Js
+    - <strong>Nest.Js
     - Node.Js
     - Prisma.io
     - SQlite
     - Jest
----
 <br>
 
+## Como instalar o projeto - terminal
+```bash
+  -> open the terminal 
+
+  $git clone https://github.com/fymorGod/notifications-service
+  
+  $cd notifications-service
+
+  -> Open this folder on terminal
+
+  $code .
+
+  -> open terminal in VS Code
+  $npm install
+
+  -> Start Project
+
+  $npm run start:dev 
+
+  OBS: Do you can see in package.json others commands to start the project
+```
+
+---
 ## Caso de uso do Projeto
 - Aplicação com o objetivo de enviar notificações ao usuário quando alguma operação acontecer.
 - Seguindo com possíveis exemplos:
@@ -54,28 +76,100 @@ ___
 ## | Configurações dentro do projeto
 ### tsconfig.json
 
-  ```
+  ```bash
   {
-  "compilerOptions": {
-    "module": "commonjs",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2017",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
-    "strict": true,
-    "incremental": true,
-    "skipLibCheck": true,
-    "strictNullChecks": true,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "strictPropertyInitialization": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-     }
-  }
+    "compilerOptions": {
+      "module": "commonjs",
+      "declaration": true,
+      "removeComments": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "allowSyntheticDefaultImports": true,
+      "resolveJsonModule": true,
+      "target": "es2017",
+      "sourceMap": true,
+      "outDir": "./dist",
+      "baseUrl": "./",
+      "strict": true,
+      "incremental": true,
+      "skipLibCheck": true,
+      "strictNullChecks": true,
+      "noImplicitAny": false,
+      "strictBindCallApply": false,
+      "strictPropertyInitialization": false,
+      "forceConsistentCasingInFileNames": false,
+      "noFallthroughCasesInSwitch": false,
+      "paths": {
+        "@application/*": ["./src/application/*"],
+        "@helpers/*": ["./src/helpers/*"],
+        "@infra/*": ["./src/infra/*"],
+        "@test/*": ["./test/*"]
+      }
+    }
+}
+
   ```
+
+  ### jest config
+
+  ```bash
+  import { Config } from 'jest';
+  import { pathsToModuleNameMapper } from "ts-jest";
+  import { compilerOptions } from './tsconfig.json';
+
+  const config: Config = {
+      "moduleFileExtensions": [
+        "js",
+        "json",
+        "ts"
+      ],
+      "testRegex": ".*\\.spec\\.ts$",
+      "transform": {
+        "^.+\\.(t|j)s$": "ts-jest"
+      },
+      "collectCoverageFrom": [
+        "**/*.(t|j)s"
+      ],
+      moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+        prefix: '<rootDir>/',
+      }),
+
+      "coverageDirectory": "../coverage",
+      "testEnvironment": "node"
+    };
+
+export default config;
+  ```
+
+  ###  | Alguns Patterns utilizados no projeto
+  - Mappers
+  - Factory Pattern - Utilizado em Testes
+
+  ### Veficando erros nos códigos typescript
+
+  ```bash
+    -> Ele faz uma verificaçâo em todos os arquivos typescript dentro da aplicação.
+    $npx tsc --noEmit
+
+  ```
+
+---
+
+<br>
+
+## | How to start tests in application - Como rodar os testes na aplicação
+
+```bash
+  -> Terminal
+
+  // listen all tests
+  $npm run test:watch
+
+  // start only one test
+  $ npm run test
+
+  //coverage folder
+  $npm run test:cov
+
+  OBS: to many commands, access package.json
+```
