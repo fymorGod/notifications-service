@@ -1,6 +1,4 @@
-
-import { Content } from "@application/entities/content";
-import { Notification } from "@application/entities/notification";
+import { makeNotification } from "@test/factories/notifications-factory";
 import { InMemoryNoficationRepository } from "@test/repositories/in-memory-notifications-repository";
 import { CancelNotification } from "./cancel-notification";
 import { NotificationNotFound } from "./errors/notifications-not-found";
@@ -10,11 +8,7 @@ describe('Send notification', () => {
         const notificationRepository = new InMemoryNoficationRepository();
         const cancelNotification = new CancelNotification(notificationRepository);
 
-        const notification = new Notification({
-            category: 'social',
-            content: new Content('Nova solicitação de amizade!'),
-            recipientId: 'example-recipient-id',
-        })
+        const notification = makeNotification()
         
         await notificationRepository.create(notification);
 

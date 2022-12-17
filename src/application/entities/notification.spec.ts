@@ -7,9 +7,9 @@ describe('Notification', () => {
             content: new Content('Nova solicitação de amizade!'),
             category: 'social',
             recipientId: 'exemple-recipient-id',            
-        })
+        });
     
         expect(notification).toBeTruthy();
-    })
+    });
 })
 
