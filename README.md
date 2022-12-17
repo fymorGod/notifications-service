@@ -5,11 +5,11 @@
 ## Microservices - NodeJs Arquitetura Service-Oriented
 
 - Tecnologias Utilizadas
-    - <strong>Nest.Js
-    - Node.Js
-    - Prisma.io
-    - SQlite
-    - Jest
+    - <strong>Nest.Js</strong>
+    - <strong>Node.Js</strong>
+    - <strong>Prisma.io</strong>
+    - <strong>SQlite</strong>
+    - <strong>Jest</strong>
 <br>
 
 ## Como instalar o projeto - terminal
